@@ -198,9 +198,13 @@ export const HeroBackground3D: React.FC<HeroBackground3DProps> = ({ interactive 
     // Handle Window Resize
     const handleResize = () => {
       if (!container) return;
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      if (w > 0 && h > 0) {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
     };
 
     window.addEventListener('resize', handleResize, { passive: true });

@@ -11,6 +11,15 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
   const mountRef = useRef<HTMLDivElement>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
+  // Refs for callbacks and reactive props to avoid re-triggering the useEffect loop
+  const onSelectSkillRef = useRef(onSelectSkill);
+  onSelectSkillRef.current = onSelectSkill;
+
+  const selectedSkillRef = useRef(selectedSkill);
+  selectedSkillRef.current = selectedSkill;
+
+  const hoveredSkillRef = useRef<string | null>(null);
+
   // Flatten all skills
   const allSkills = SKILL_CATEGORIES.flatMap(cat =>
     cat.skills.map(skill => ({
@@ -123,7 +132,6 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
     // Mouse drag rotation & Raycasting
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
-    let rotationVelocity = { x: 0.003, y: 0.004 };
 
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -145,7 +153,6 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
         globeGroup.rotation.y += deltaX * 0.008;
         globeGroup.rotation.x += deltaY * 0.008;
 
-        rotationVelocity = { x: deltaY * 0.001, y: deltaX * 0.001 };
         previousMousePosition = { x: e.clientX, y: e.clientY };
       } else {
         // Raycasting for hover
@@ -154,13 +161,19 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
         if (intersects.length > 0) {
           const hit = nodeMeshes.find(n => n.mesh === intersects[0].object);
           if (hit) {
-            setHoveredSkill(hit.skillName);
+            if (hoveredSkillRef.current !== hit.skillName) {
+              hoveredSkillRef.current = hit.skillName;
+              setHoveredSkill(hit.skillName);
+            }
             container.style.cursor = 'pointer';
+            return;
           }
-        } else {
-          setHoveredSkill(null);
-          container.style.cursor = 'grab';
         }
+        if (hoveredSkillRef.current !== null) {
+          hoveredSkillRef.current = null;
+          setHoveredSkill(null);
+        }
+        container.style.cursor = 'grab';
       }
     };
 
@@ -179,7 +192,7 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
       if (intersects.length > 0) {
         const hit = nodeMeshes.find(n => n.mesh === intersects[0].object);
         if (hit) {
-          onSelectSkill(hit.skillName);
+          onSelectSkillRef.current(hit.skillName);
         }
       }
     };
@@ -192,9 +205,11 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
       if (!container) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      if (w > 0 && h > 0) {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
     };
     window.addEventListener('resize', handleResize);
 
@@ -203,17 +218,19 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
 
     const animate = () => {
       animationId = requestAnimationFrame(animate);
-      const delta = clock.getDelta();
 
       if (!isDragging && !prefersReducedMotion) {
-        globeGroup.rotation.y += 0.004;
-        globeGroup.rotation.x += Math.sin(clock.getElapsedTime() * 0.5) * 0.001;
+        globeGroup.rotation.y += 0.003;
+        globeGroup.rotation.x += Math.sin(clock.getElapsedTime() * 0.5) * 0.0008;
       }
 
       // Highlight selected or hovered node scale
+      const currentSelected = selectedSkillRef.current;
+      const currentHovered = hoveredSkillRef.current;
+
       nodeMeshes.forEach(n => {
-        const isSelected = n.skillName === selectedSkill;
-        const isHovered = n.skillName === hoveredSkill;
+        const isSelected = n.skillName.toLowerCase() === currentSelected?.toLowerCase();
+        const isHovered = n.skillName === currentHovered;
 
         const targetScale = isSelected ? 1.7 : isHovered ? 1.4 : 1.0;
         n.mesh.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
@@ -241,7 +258,7 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
       linesMat.dispose();
       renderer.dispose();
     };
-  }, [onSelectSkill, selectedSkill, hoveredSkill]);
+  }, []);
 
   return (
     <div className="relative w-full h-[360px] sm:h-[460px] flex items-center justify-center">
