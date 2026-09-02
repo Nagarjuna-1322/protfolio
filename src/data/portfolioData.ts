@@ -98,11 +98,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         highlight: true
       },
       {
-        name: "JavaScript",
+        name: "TypeScript",
         proficiency: "Proficient",
-        description: "Dynamic client-side interactivity, API integration, and event-driven architecture.",
-        tags: ["Client Logic", "APIs"],
-        highlight: false
+        description: "Type-safe modern web application development, interface contracts, and scalable codebase architecture.",
+        tags: ["TypeScript", "Type Safety", "Frontend"],
+        highlight: true
       },
       {
         name: "HTML5",

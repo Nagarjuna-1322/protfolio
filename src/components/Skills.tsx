@@ -138,9 +138,9 @@ export const Skills: React.FC = () => {
                   Quick Select:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {SKILL_CATEGORIES.flatMap((c) => c.skills).map((skill) => (
+                  {SKILL_CATEGORIES.flatMap((c) => c.skills.map((s) => ({ ...s, catId: c.id }))).map((skill) => (
                     <button
-                      key={skill.name}
+                      key={`${skill.catId}-${skill.name}`}
                       onClick={() => setSelectedSkillName(skill.name)}
                       className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                         selectedSkillName?.toLowerCase() === skill.name.toLowerCase()

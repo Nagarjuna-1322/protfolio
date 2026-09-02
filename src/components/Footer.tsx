@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Github, Linkedin, Mail, Heart, Clock } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { scrollToElement } from '../hooks/useSmoothScroll';
 
 export const Footer: React.FC = () => {
   const [time, setTime] = useState<string>('');
@@ -25,7 +26,7 @@ export const Footer: React.FC = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToElement('#home', { offset: 0, duration: 1.2 });
   };
 
   return (

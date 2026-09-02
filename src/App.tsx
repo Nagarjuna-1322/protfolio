@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -15,6 +16,12 @@ import { ResumeModal } from './components/ResumeModal';
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [resumeModalOpen, setResumeModalOpen] = useState<boolean>(false);
+
+  // Initialize Lenis smooth inertial scrolling
+  useSmoothScroll({
+    duration: 1.2,
+    smoothWheel: true,
+  });
 
   useEffect(() => {
     const sections = ['home', 'about', 'skills', 'projects', 'journey', 'certifications', 'github', 'contact'];

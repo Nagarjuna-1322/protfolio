@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, ArrowUpRight, Terminal } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { scrollToElement } from '../hooks/useSmoothScroll';
 
 interface NavbarProps {
   activeSection: string;
@@ -34,10 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenResume }) =
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToElement(href, { offset: -40, duration: 1.2 });
   };
 
   return (

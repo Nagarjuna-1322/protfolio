@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowDown, Sparkles, FileText, ChevronRight, MapPin, Terminal } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { HeroBackground3D } from './canvas/HeroBackground3D';
+import { scrollToElement } from '../hooks/useSmoothScroll';
 
 interface HeroProps {
   onOpenResume: () => void;
@@ -9,10 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   const scrollToSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToElement(`#${sectionId}`, { offset: -40, duration: 1.2 });
   };
 
   return (
