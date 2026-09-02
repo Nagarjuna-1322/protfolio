@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, GraduationCap, Trophy, Users, Award, MapPin } from 'lucide-react';
+import { GraduationCap, Trophy, Users, MapPin } from 'lucide-react';
 import { JOURNEY_MILESTONES } from '../data/portfolioData';
 
 export const ExperienceTimeline: React.FC = () => {

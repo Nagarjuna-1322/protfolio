@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { X, Download, Printer, Copy, Check, FileText, ExternalLink, Mail, Phone, MapPin, GraduationCap, Award, Cpu, ShieldCheck } from 'lucide-react';
-import { PERSONAL_INFO, SKILL_CATEGORIES, PROJECTS, JOURNEY_MILESTONES, CERTIFICATIONS } from '../data/portfolioData';
+import { X, Download, Printer, Copy, Check, FileText } from 'lucide-react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;

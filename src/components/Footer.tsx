@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart, Clock } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Clock } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { scrollToElement } from '../hooks/useSmoothScroll';
 

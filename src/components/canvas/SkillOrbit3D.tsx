@@ -247,9 +247,16 @@ export const SkillOrbit3D: React.FC<SkillOrbit3DProps> = ({ onSelectSkill, selec
       window.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('mouseup', onPointerUp);
       window.removeEventListener('resize', handleResize);
-      if (container && renderer.domElement) {
+      if (container && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+      nodeMeshes.forEach(n => {
+        if (Array.isArray(n.mesh.material)) {
+          n.mesh.material.forEach(m => m.dispose());
+        } else if (n.mesh.material) {
+          n.mesh.material.dispose();
+        }
+      });
       sphereGeo.dispose();
       sphereMat.dispose();
       nodeGeo.dispose();

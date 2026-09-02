@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Sparkles, Brain, Rocket, GraduationCap, Languages, ArrowRight } from 'lucide-react';
+import { Code2, Sparkles, Brain, Rocket, GraduationCap, Languages } from 'lucide-react';
 import { PERSONAL_INFO, ABOUT_CARDS } from '../data/portfolioData';
 import { AboutHoloCore3D } from './canvas/AboutHoloCore3D';
 

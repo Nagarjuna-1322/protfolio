@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Sparkles, FileText, ChevronRight, MapPin, Terminal } from 'lucide-react';
+import { FileText, ChevronRight, MapPin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { HeroBackground3D } from './canvas/HeroBackground3D';
 import { scrollToElement } from '../hooks/useSmoothScroll';

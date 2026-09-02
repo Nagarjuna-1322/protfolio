@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, Github, CheckCircle2, Cpu, Wrench, ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
+import { X, ExternalLink, Github, CheckCircle2, Cpu, Wrench, Sparkles } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectModalProps {

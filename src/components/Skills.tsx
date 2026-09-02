@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Terminal, Layout, BrainCircuit, Cloud, CheckCircle2, Sparkles, Orbit, Grid3X3, Search, Info } from 'lucide-react';
+import { Terminal, Layout, BrainCircuit, Cloud, Sparkles, Orbit, Grid3X3, Search, Info } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { SkillOrbit3D } from './canvas/SkillOrbit3D';
-import { SkillItem } from '../types';
 
 export const Skills: React.FC = () => {
   const [viewMode, setViewMode] = useState<'3d' | 'grid'>('3d');

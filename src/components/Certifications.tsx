@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, ShieldCheck, CheckCircle2, ExternalLink, Sparkles, Trophy } from 'lucide-react';
+import { ShieldCheck, ExternalLink, Trophy } from 'lucide-react';
 import { CERTIFICATIONS } from '../data/portfolioData';
 
 export const Certifications: React.FC = () => {

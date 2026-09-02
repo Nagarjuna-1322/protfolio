@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Layers, Cpu, Code2 } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';

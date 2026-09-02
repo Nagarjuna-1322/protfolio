@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ExternalLink, Github, ArrowUpRight, Sparkles, Layers, Cpu } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Sparkles, Cpu } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectCardProps {

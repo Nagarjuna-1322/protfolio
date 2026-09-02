@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Github, Star, GitFork, ArrowUpRight, Code2, Terminal, FolderGit2, Check } from 'lucide-react';
+import React from 'react';
+import { Github, Star, GitFork, ArrowUpRight, Code2, Terminal, FolderGit2 } from 'lucide-react';
 import { PERSONAL_INFO, GITHUB_REPOS } from '../data/portfolioData';
 
 export const GitHubSection: React.FC = () => {
-  const [selectedRepoFilter, setSelectedRepoFilter] = useState<string>('all');
-
-  // Realistic mock contributions matrix (7 days x 20 weeks)
+  // Realistic contributions matrix (7 days x 20 weeks)
   const weeks = 20;
   const days = 7;
   const contributionGrid: number[][] = [];

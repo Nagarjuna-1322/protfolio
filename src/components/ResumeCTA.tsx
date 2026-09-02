@@ -1,6 +1,5 @@
 import React from 'react';
-import { FileText, Download, Sparkles, ArrowRight } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import { FileText, Download, Sparkles } from 'lucide-react';
 
 interface ResumeCTAProps {
   onOpenResume: () => void;

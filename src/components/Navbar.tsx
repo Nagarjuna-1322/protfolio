@@ -180,7 +180,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onOpenResume }) =
                 rel="noopener noreferrer"
                 className="w-full py-2 rounded-xl text-xs text-slate-400 hover:text-white flex items-center justify-center gap-1.5"
               >
-                <span>GitHub @Nagarjuna-1322</span>
+                <span>GitHub @{PERSONAL_INFO.githubUsername}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
